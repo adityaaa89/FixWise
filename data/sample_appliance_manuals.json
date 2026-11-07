@@ -1,0 +1,35 @@
+[
+  {
+    "brand": "Godrej",
+    "appliance_type": "Refrigerator",
+    "model": "Eon Frost Free 260L Double Door",
+    "error_code": "E2",
+    "symptom": "Defrost sensor open circuit / bottom refrigerator compartment warm",
+    "raw_text": "GODREJ APPLIANCES TECHNICAL SERVICE MANUAL\nModel: RT Eon 260 / 290 / 350 Double Door Frost Free Series.\nDiagnostic Error Code: E2 on Freezer LED Display.\nFault Description: Freezer Defrost Thermistor / Sensor Open Circuit (Resistance > 100k Ohm at 0°C).\nSymptom: Evaporator cooling coils become completely choked with frost/ice block within 48 hours, blocking cold air airflow duct to the lower refrigerator fresh food compartment.\nField Troubleshooting Steps:\n1. Unplug refrigerator from 230V mains socket.\n2. Remove freezer back louvre panel and disconnect sensor connector.\n3. Measure thermistor resistance using calibrated multimeter (nominal value: 2.1k Ohm at 25°C, 5.6k Ohm at 0°C). Replace sensor assembly if open circuit or drifted.\n4. Check bi-metal thermostat continuity and verify 160W defrost heater resistance (approx 330 Ohms).\nSafety Warning: Always disconnect power before touching internal wiring or heating elements."
+  },
+  {
+    "brand": "IFB",
+    "appliance_type": "Washing Machine",
+    "model": "Senator Smart Touch 8.5kg Front Load",
+    "error_code": "tAP",
+    "symptom": "Water supply timeout / Machine beeps and stops cycle with tAP error",
+    "raw_text": "IFB FRONT LOAD SERVICE GUIDE\nAlarm: 'tAP' / Water Inflow Failure.\nTrigger Condition: Water level pressure transducer does not detect minimum wash level within 6 minutes of inlet solenoid valve activation.\nCommon Root Causes in Indian Households:\n1. Low overhead water tank pressure (< 0.3 bar / 4.3 psi) without booster pump.\n2. Inlet hose metal mesh filter clogged with rust flakes, silt, or hard water mineral scales.\n3. 230V Dual Solenoid Valve coil burned out.\nRemedial Action:\n1. Check water supply at tap.\n2. Unscrew cold water inlet hose from back of machine, use toothbrush to clean conical mesh filter.\n3. Measure solenoid valve coil resistance (nominal 3.8k to 4.2k Ohms). Replace inlet valve assembly if open."
+  },
+  {
+    "brand": "Voltas",
+    "appliance_type": "Inverter Air Conditioner",
+    "model": "Maha Adjustable Inverter AC 1.5 Ton",
+    "error_code": "F1",
+    "symptom": "Outdoor IPM Intelligent Power Module Overcurrent Protection",
+    "raw_text": "VOLTAS INVERTER TECHNICAL REPAIR BULLETIN\nError Code: F1\nMeaning: IPM High Current / Overheating Protection on Outdoor Inverter PCB.\nCauses:\n1. Low AC line voltage (<175V) during peak Indian summer afternoon causing high current draw.\n2. Outdoor condenser coil choked with thick dust or pigeon droppings, restricting air ventilation.\n3. BLDC outdoor condenser fan motor bearing jammed or weak run capacitor.\n4. Compressor U-V-W winding short to ground or inter-phase resistance imbalance.\nDiagnosis:\n1. Clean outdoor unit coil using low-pressure water jet.\n2. Disconnect 3-pin compressor terminal block and measure resistance across U-V, V-W, and W-U (must be identical, typically 0.8 to 1.4 Ohms). Check resistance to chassis (> 20M Ohms).\n3. Replace outdoor inverter main drive PCB if IPM bridge has short-circuited."
+  },
+  {
+    "brand": "Kent",
+    "appliance_type": "Water Purifier (RO+UV+UF)",
+    "model": "Grand Plus Minerals RO",
+    "error_code": "FILTER_CHANGE",
+    "symptom": "Filter change alarm beeping every 2 hours",
+    "raw_text": "KENT RO SYSTEM SERVICE MANUAL\nAlarm: Filter Change Alarm (FCA).\nMicro-controller Logic: Activates after 700 hours of cumulative booster pump operation (approx 12 months of household usage).\nMaintenance Protocol:\n1. Isolate 24V SMPS power adapter and close inline 3-way divert valve.\n2. Depressurize system and replace 5-micron spun polypropylene pre-filter candle.\n3. Replace inline sediment filter (white) and activated carbon block filter (blue).\n4. Check Raw Water TDS vs Pure Water TDS. Membrane rejection must exceed 90%.\n5. Reset micro-controller timer by holding reset push-button on PCB for 10 seconds until confirmation double-beep sounds."
+  }
+]
+

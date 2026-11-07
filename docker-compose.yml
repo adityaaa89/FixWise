@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  advisor-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: repair_replace_advisor
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////app/data/advisor.db
+      - ADAPTION_API_KEY=${ADAPTION_API_KEY:-}
+      - ADAPTION_API_BASE_URL=${ADAPTION_API_BASE_URL:-https://api.prod.adaptionlabs.ai/api/v1}
+      - ADAPTION_CREDIT_BUDGET=${ADAPTION_CREDIT_BUDGET:-5000}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - ADAPTION_MOCK_MODE=${ADAPTION_MOCK_MODE:-false}
+    volumes:
+      - advisor_data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  advisor_data:
+    driver: local
+

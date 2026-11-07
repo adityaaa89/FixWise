@@ -1,0 +1,194 @@
+================================================================================
+BHARATCODE HACKATHON SUBMISSION: FIXWISE
+PROJECT: APPLIANCE REPAIR OR REPLACE ADVISOR
+================================================================================
+
+1. EXECUTIVE SUMMARY & ELEVATOR PITCH
+--------------------------------------------------------------------------------
+FixWise is an intelligent, deterministic financial decision engine and multimodal
+diagnostic system for household appliances across India. 
+
+When a major home appliance (washing machine, air conditioner, refrigerator, water
+heater, water purifier) breaks down, consumers face an anxious, opaque dilemma:
+"Should I pay a technician ₹4,500 to repair my 5-year-old appliance, or spend ₹30,000
+on a new 5-star inverter model?"
+
+FixWise eliminates this guesswork by pairing Google Gemini 2.5 Flash Vision OCR
+and Adaption AI Labs diagnostic triage with a 100% deterministic mathematical 
+lifecycle amortization engine. It evaluates technician quotes against genuine OEM 
+parts benchmarks, factors in repeat breakdown risks and Bureau of Energy Efficiency 
+(BEE) power tariffs, and delivers an objective "REPAIR" or "REPLACE" verdict with the 
+exact tipping point required to flip the decision.
+
+
+2. THE REAL-WORLD PROBLEM IN INDIA
+--------------------------------------------------------------------------------
+Over 350 million household appliances power Indian homes. Every year, tens of millions 
+experience breakdowns, leading to significant consumer frustration:
+
+A) The Sunk-Cost Fallacy & Repeat Failure Trap:
+   Consumers frequently sink ₹3,000 - ₹6,000 into repairing aging appliances (6+ years old),
+   only for another critical component (compressor, main PCB controller, drum bearings)
+   to fail 4 months later. Repeat breakdown rates on late-lifecycle appliances exceed 20-30%.
+
+B) Information Asymmetry & Overcharging:
+   Local unorganized technicians routinely inflate repair quotes by 100-300% or misdiagnose
+   cheap faults (e.g., a ₹400 microswitch or ₹650 inlet valve) as catastrophic failures
+   (e.g., "Full PCB board burnt, ₹6,000").
+
+C) Hidden Energy Costs (The Energy Star Reality):
+   An old 10-year-old non-inverter air conditioner or refrigerator consumes ₹8,000 to 
+   ₹12,000 more electricity every year compared to a modern BEE 5-star inverter unit. 
+   Homeowners focus solely on the upfront repair quote without realizing that keeping 
+   an inefficient appliance costs them far more in utility bills.
+
+D) India's E-Waste Crisis:
+   Discarding appliances prematurely when a simple ₹800 DIY fix or part replacement 
+   would give them 4 more years of life accelerates the mounting electronic waste crisis.
+
+
+3. THE FIXWISE SOLUTION & HOW IT WORKS
+--------------------------------------------------------------------------------
+FixWise combines a guided 3-step interface with a rigorous, transparent pipeline:
+
+STEP 1: Plain-Language Symptom & Profile Intake
+   - Users select appliance category (Washing Machine, AC, Refrigerator, RO, Geyser, Microwave).
+   - Enter their brand, appliance age (years), and describe symptoms in everyday Indian phrasing
+     (e.g., "machine beeps continuously with dE error", "AC outdoor unit cuts off after 10 mins",
+     "geyser switch on karte hi 32A MCB trip ho jati hai").
+
+STEP 2: Financial Baseline & Technician Quote
+   - FixWise pre-fills real-world Indian retail market benchmarks for new replacement units
+     and fair OEM part price bands.
+   - If the user has received an estimate from a technician, they enter the exact quote (Q).
+
+STEP 3 (Optional): Multimodal Rating Plate OCR
+   - Users drop a photo of their model sticker / rating plate label.
+   - Google Gemini 2.5 Flash Vision automatically extracts the exact model number, serial
+     number, voltage, frequency, and wattage, eliminating technical data entry errors.
+
+STEP 4: Dual-Engine Evaluation
+   - AI Diagnostic Engine: Queries Adaption AI Labs triage models to rank probable component
+     defects (door lock microswitch, drain pump, PCB inverter, fan motor) with DIY feasibility flags.
+   - Deterministic Math Engine: Python cost engine calculates annualized lifecycle outlays
+     for both options and identifies the exact sensitivity tipping point.
+
+
+4. THE DETERMINISTIC MATHEMATICAL FORMULATION
+--------------------------------------------------------------------------------
+A core architectural principle of FixWise is that THE LLM NEVER DOES ARITHMETIC.
+All calculations are executed deterministically in Python (backend/cost_engine.py).
+
+A) Total & Annualized Repair Cost:
+   C_repair = Q + (tr * v) + (p * Q) + (E_old * L_r)
+   Annualized Repair Outlay = C_repair / L_r = [ Q*(1 + p) + (tr * v) ] / L_r + E_old
+
+   Where:
+   - Q     = Technician repair quote or OEM part replacement cost
+   - p     = Probability of repeat breakdown within extended lifespan (default: 15-20%)
+   - tr    = Time/hassle hours lost by owner dealing with technician & waiting (default: 4.0 hrs)
+   - v     = Monetary value of consumer's personal time (default: ₹350/hour)
+   - E_old = Annual operating & electricity cost of the current old unit (BEE tariff: ₹8.50/unit)
+   - L_r   = Expected extended lifespan post-repair (typically 2 - 4 years)
+
+B) Total & Annualized Replace Cost:
+   C_replace = P + D - S + (tn * v) + (E_new * L_n)
+   Annualized Replace Outlay = C_replace / L_n = [ P + D - S + (tn * v) ] / L_n + E_new
+
+   Where:
+   - P     = Purchase price of a modern 4/5-star inverter replacement model
+   - D     = Delivery, professional installation, and piping fee (₹800 standard)
+   - S     = Scrap, trade-in, or old-unit exchange credit (₹1,500 standard)
+   - tn    = Time hours spent researching, ordering, and receiving new unit (5.0 hrs)
+   - E_new = Annual electricity cost of modern 5-star inverter model
+   - L_n   = Expected lifespan of brand new replacement appliance (8 - 12 years)
+
+C) Objective Decision Rule:
+   - If Annualized Repair Outlay < Annualized Replace Outlay: VERDICT = "REPAIR"
+   - Otherwise: VERDICT = "REPLACE"
+
+D) Exact Tipping Point (Flip Assumption):
+   The sensitivity solver calculates the exact boundary condition where the decision flips:
+   - Q_flip: The maximum repair quote before replacement becomes cheaper.
+   - L_r_flip: The minimum lifespan the repaired appliance must survive to justify the fix.
+   - P_flip: The discount price at which buying new becomes the smarter choice.
+
+
+5. WHY FIXWISE IS VERY USEFUL (IMPACT & VALUE PROPOSITION)
+--------------------------------------------------------------------------------
+1. Direct Financial Savings for Indian Families:
+   Prevents homeowners from throwing ₹5,000+ at an obsolete appliance when annualized energy
+   inefficiency and repeat failures make replacement ₹1,500 - ₹3,500/year cheaper.
+
+2. Exposing Inflated Quotes (Anti-Scam Protection):
+   By cross-referencing technician estimates against genuine OEM component bands (e.g., IFB,
+   Voltas, LG, Samsung catalogs), consumers know immediately if they are being overcharged.
+
+3. National Energy Conservation (Aligned with BEE India):
+   Replacing old, energy-guzzling non-inverter appliances with 5-star inverter models cuts
+   household electricity consumption by 30-45%, reducing peak grid loads across Indian cities.
+
+4. Reducing Electronic Waste:
+   Encourages repair whenever an appliance is in its early or mid-lifecycle and the repair
+   cost is mathematically justified, extending device lifespans and reducing landfill waste.
+
+5. Zero AI Hallucination on Financials:
+   By strictly separating AI (used solely for OCR vision and symptom pattern recognition)
+   from deterministic Python arithmetic, users receive verifiable, reproducible financial advice.
+
+
+6. REAL-WORLD USER PERSONA SCENARIOS
+--------------------------------------------------------------------------------
+Scenario 1: IFB Front-Load Washing Machine (Age: 3.5 years)
+- Symptom: Starts wash cycle, beeps continuously with "dE" error code.
+- Technician Quote: ₹2,400.
+- FixWise Result: 
+  * Diagnosis: Door Lock Thermal Interlock switch failure (Moderate DIY).
+  * Verdict: REPAIR (Firm Recommendation).
+  * Annualized Repair: ₹4,586/yr vs. Replacement: ₹4,705/yr.
+  * Tipping Point: Repair remains optimal as long as the quote stays below ₹2,708.
+
+Scenario 2: Voltas Split Air Conditioner (Age: 7.5 years)
+- Symptom: Low cooling, compressor cuts off after 10 mins with burning smell.
+- Technician Quote: ₹7,500 (Compressor replacement + gas recharge).
+- FixWise Result:
+  * Diagnosis: Outdoor Inverter Compressor coil failure.
+  * Verdict: REPLACE (Firm Recommendation).
+  * Net Annual Savings: ₹3,200/year by switching to a modern 5-star inverter AC due to
+    drastic energy savings (old non-inverter runs at ₹11,500/yr vs ₹6,500/yr on new unit).
+
+
+7. TECHNICAL ARCHITECTURE & STACK
+--------------------------------------------------------------------------------
+- Frontend:
+  * React 18 SPA with Vite for sub-second hot-reloads and rapid production builds.
+  * Tailwind CSS customized with an executive dark charcoal (#171821) and neon lime (#C8F135) palette.
+  * Lucide Icons for clean, professional data visualization without childish emojis.
+  * Resilient Client API layer with automatic direct-cloud fallback if backend is offline.
+
+- Backend:
+  * FastAPI (Python 3.12) ASGI microservice.
+  * SQLAlchemy ORM with SQLite persistence (persisting Case Assessments, OEM Price Bands, References).
+  * Pydantic v2 schemas for strict input sanitization and response contracts.
+
+- AI & Vision:
+  * Google Gemini 2.5 Flash Vision for multimodal rating plate OCR sticker recognition.
+  * Adaption AI Labs (DeepSeek V4 Flash) fine-tuned appliance diagnosis models.
+  * Local heuristic pattern extractor fallback for 100% offline uptime.
+
+- Deterministic Math Engine:
+  * Pure Python cost engine with closed-form mathematical equations and sensitivity analysis.
+  * Pytest test suite with 17 rigorous unit tests covering edge cases, ties, and sensitivities.
+
+
+8. FUTURE ROADMAP
+--------------------------------------------------------------------------------
+- Phase 1 (Current): Deterministic Decision Engine, Rating Plate Vision OCR, Diagnostic Triage.
+- Phase 2: Verified Local Technician Directory with upfront price guarantees matching OEM bands.
+- Phase 3: WhatsApp Chatbot Integration via Twilio for voice-note symptoms and photo uploads.
+- Phase 4: InsurTech & Warranty Integration: One-click appliance extended warranty recommendations.
+
+================================================================================
+FixWise: Making Every Appliance Decision Transparent, Deterministic, and Green.
+================================================================================
+
